@@ -113,10 +113,11 @@ model UserOnProducts {
 }
 
 model Waiter {
-  id        Int     @id @default(autoincrement())
-  code      String  @unique
+  id        Int      @id @default(autoincrement())
+  code      String   @unique
   firstname String
   lastname  String
+  createdAt DateTime @default(now())
   orders    Order[]
 }
 
