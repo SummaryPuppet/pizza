@@ -24,6 +24,10 @@ const screens = {
   // Waiters
   AllWaiters: lazy(() => import("@/screens/Waiter/AllWaiters")),
   AddWaiter: lazy(() => import("@/screens/Waiter/AddWaiter")),
+
+  // Tables
+  AllTables: lazy(() => import("@/screens/Table/AllTables")),
+  CreateTable: lazy(() => import("@/screens/Table/CreateTable")),
 };
 
 export const routes = [
@@ -106,6 +110,19 @@ export const routes = [
         element: <screens.AddWaiter />,
         name: "add waiter",
         category: "waiter",
+      },
+
+      {
+        path: "/tables",
+        element: <screens.AllTables />,
+        name: "tables",
+        category: "table",
+      },
+      {
+        path: "/table/create",
+        element: <screens.CreateTable />,
+        name: "create tables",
+        category: "table",
       },
     ],
   },

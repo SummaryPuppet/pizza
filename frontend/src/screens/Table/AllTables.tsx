@@ -1,39 +1,33 @@
-import { getWaiters } from "@/api/waiter";
+import { getTables } from "@/api/table";
 import Loader from "@/components/ui/Loader";
 import Layout from "@/layouts/Layout";
-import { IWaiter } from "@/types/waiter";
+import { ITable } from "@/types/table";
 import { useQuery } from "react-query";
 
-function AllWaitersScreen() {
-  const { data: waiters, isLoading } = useQuery<IWaiter[]>(
-    "waiters",
-    getWaiters
-  );
+function AllTablesScreen() {
+  const { data: tables, isLoading } = useQuery<ITable[]>("tables", getTables);
 
   if (isLoading) {
     return (
-      <Layout title="Waiters">
+      <Layout title="Tables">
         <main className="p-4">
           <Loader />
         </main>
       </Layout>
     );
   }
-
   return (
-    <Layout title="Waiters">
+    <Layout title="Tables">
       <main className="p-6">
         <ul className="grid gap-y-16 lg:grid-cols-3">
-          {waiters?.map((waiter) => (
+          {tables?.map((table) => (
             <li
-              key={waiter.id}
+              key={table.id}
               className="card max-h-96 w-96 bg-base-100 shadow-xl"
             >
               <div className="card-body">
-                <h2 className="card-title">
-                  {waiter.firstname} {waiter.lastname}
-                </h2>
-                <p>code: {waiter.code}</p>
+                <h2 className="card-title">Table: {table.number}</h2>
+                <p>Capacity: {table.capacity}</p>
               </div>
             </li>
           ))}
@@ -43,4 +37,4 @@ function AllWaitersScreen() {
   );
 }
 
-export default AllWaitersScreen;
+export default AllTablesScreen;

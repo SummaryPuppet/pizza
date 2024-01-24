@@ -1,4 +1,4 @@
-import MenuSideBar from "../MenuSideBar";
+import MenuSideBar from "./MenuSideBar";
 
 interface Props {
   children: React.ReactNode;

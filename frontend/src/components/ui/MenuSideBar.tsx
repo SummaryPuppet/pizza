@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
+import DashboardIcon from "../icons/Dashboard";
+import IngredientIcon from "../icons/Ingredient";
+import TransferIcon from "../icons/Transfer";
 import MenuSideBarItem from "./MenuSideBarItem";
-import DashboardIcon from "./icons/Dashboard";
-import IngredientIcon from "./icons/Ingredient";
-import TransferIcon from "./icons/Transfer";
 
 function MenuSideBar() {
   return (
@@ -69,10 +69,10 @@ function MenuSideBar() {
 
         <MenuSideBarItem title={"Tables"}>
           <li>
-            <Link to={""}>All Tables</Link>
+            <Link to={"/tables"}>All Tables</Link>
           </li>
           <li>
-            <Link to={""}>Add Table</Link>
+            <Link to={"/table/create"}>Add Table</Link>
           </li>
         </MenuSideBarItem>
       </ul>

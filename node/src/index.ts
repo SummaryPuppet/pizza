@@ -5,6 +5,7 @@ import express from "express";
 import authRoutes from "./Auth/route";
 import ingredientRoutes from "./Ingredient/route";
 import productRoutes from "./Product/route";
+import tableRoute from "./Table/route";
 import waiterRoute from "./Waiter/route";
 
 import passport from "passport";
@@ -31,6 +32,7 @@ app.use(authRoutes);
 app.use(productRoutes);
 app.use(ingredientRoutes);
 app.use(waiterRoute);
+app.use(tableRoute);
 
 app.listen(port);
 console.log(`Server on port http://localhost:${port}`);

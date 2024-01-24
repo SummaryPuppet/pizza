@@ -1,6 +1,7 @@
 import { createWaiter as createWaiterApi } from "@/api/waiter";
 import Input from "@/components/ui/Input";
 import SubmitButton from "@/components/ui/SubmitButton";
+import Toast from "@/components/ui/Toast";
 import FormLayout from "@/layouts/FormLayout";
 import { ICreateWaiter } from "@/types/waiter";
 import { useForm } from "react-hook-form";
@@ -55,6 +56,14 @@ function AddWaiterScreen() {
       />
 
       <SubmitButton>Add Waiter</SubmitButton>
+
+      {createWaiter.isError ? (
+        <Toast text="Error" variant="error" />
+      ) : createWaiter.isSuccess ? (
+        <Toast text="Created" variant="success" />
+      ) : (
+        <></>
+      )}
     </FormLayout>
   );
 }
