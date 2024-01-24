@@ -20,6 +20,9 @@ const screens = {
   CreateProduct: lazy(() => import("@/screens/Product/CreateProduct")),
   OneProduct: lazy(() => import("@/screens/Product/OneProduct")),
   AllProducts: lazy(() => import("@/screens/Product/AllProducts")),
+
+  // Waiters
+  AllWaiters: lazy(() => import("@/screens/Waiter/AllWaiters")),
 };
 
 export const routes = [
@@ -81,7 +84,7 @@ export const routes = [
       {
         path: "/product/:id",
         element: <screens.OneProduct />,
-        name: "create product",
+        name: "product",
         category: "product",
       },
       {
@@ -89,6 +92,13 @@ export const routes = [
         element: <screens.CreateProduct />,
         name: "create product",
         category: "product",
+      },
+
+      {
+        path: "/waiters/",
+        element: <screens.AllWaiters />,
+        name: "waiters",
+        category: "waiter",
       },
     ],
   },

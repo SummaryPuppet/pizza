@@ -29,6 +29,8 @@ function MenuSideBar() {
             <ul>
               <li>
                 <Link to={"/ingredients"}>All Ingredients</Link>
+              </li>
+              <li>
                 <Link to={"/ingredient/create"}>Create Ingredient</Link>
               </li>
             </ul>
@@ -42,6 +44,8 @@ function MenuSideBar() {
             <ul>
               <li>
                 <Link to={"/products"}>All Products</Link>
+              </li>
+              <li>
                 <Link to={"/product/create"}>Create Product</Link>
               </li>
             </ul>
@@ -58,6 +62,21 @@ function MenuSideBar() {
             <ul>
               <li>
                 <Link to={"/transactions"}>All Transactions</Link>
+              </li>
+            </ul>
+          </details>
+        </li>
+
+        <li>
+          <details>
+            <summary>Waiters</summary>
+
+            <ul>
+              <li>
+                <Link to={"/waiters"}>All Waiters</Link>
+              </li>
+              <li>
+                <Link to={"/"}>Add Waiter</Link>
               </li>
             </ul>
           </details>
