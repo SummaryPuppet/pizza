@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.2
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=pizza
+    ports:
+      - "3307:3306"
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "mysqladmin", 'ping', '-h127.0.0.1', '-P3306']
+      interval: 5s
+      timeout: 2s
+      retries: 20
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  node: 
+    build: 
+      context: ./node
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+    links:
+      - mysql
+    networks:
+      - backend
+      - frontend
+    volumes:
+      - ./node:/home/node
+
+  react:
+    build: ./frontend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - node
+    links:
+      - node
+    networks:
+      - frontend
+    volumes:
+      - ./frontend:/home/react
+
+volumes:
+  mysql_data:
+
+networks:
+  backend:
+  frontend:

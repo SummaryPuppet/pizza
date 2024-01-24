@@ -1,0 +1,137 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Ingredient {
+  id                    Int                     @id @default(autoincrement())
+  createdAt             DateTime                @default(now())
+  updatedAt             DateTime                @updatedAt
+  name                  String
+  description           String?                 @default("")
+  unitPrice             Float
+  price                 Float
+  quantityInStock       Float
+  imagePath             String                  @default("")
+  IngredientsOnProducts IngredientsOnProducts[]
+  createdBy             Admin                   @relation(fields: [userId], references: [id])
+  userId                Int
+  UserOnIngredients     UserOnIngredients[]
+}
+
+model Product {
+  id                    Int                     @id @default(autoincrement())
+  createdAt             DateTime                @default(now())
+  updatedAt             DateTime                @updatedAt
+  name                  String
+  description           String?                 @default("")
+  cost                  Float
+  price                 Float
+  quantityInStock       Float
+  imagePath             String                  @default("")
+  category              ProductCategory
+  IngredientsOnProducts IngredientsOnProducts[]
+  createdBy             Admin                   @relation(fields: [userId], references: [id])
+  userId                Int
+  UserOnProducts        UserOnProducts[]
+  Order                 Order?                  @relation(fields: [orderId], references: [id])
+  orderId               Int?
+}
+
+enum ProductCategory {
+  Pizza
+  Lasagna
+  Drink
+  Aditional
+}
+
+model IngredientsOnProducts {
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+  ingredientId Int
+
+  product   Product @relation(fields: [productId], references: [id])
+  productId Int
+
+  @@id([ingredientId, productId])
+}
+
+model Transaction {
+  id          Int             @id @default(autoincrement())
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  description String?         @default("")
+  amount      Float
+  kind        TransactionType
+  createdBy   Admin           @relation(fields: [userId], references: [id])
+  userId      Int
+}
+
+enum TransactionType {
+  Income
+  Expense
+}
+
+model Admin {
+  id                Int                 @id @default(autoincrement())
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  username          String              @unique
+  email             String              @unique
+  password          String
+  ingredientId      Ingredient[]
+  Product           Product[]
+  Transaction       Transaction[]
+  UserOnIngredients UserOnIngredients[]
+  UserOnProducts    UserOnProducts[]
+}
+
+model UserOnIngredients {
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+  ingredientId Int
+
+  user   Admin @relation(fields: [userId], references: [id])
+  userId Int
+
+  @@id([ingredientId, userId])
+}
+
+model UserOnProducts {
+  product   Product @relation(fields: [productId], references: [id])
+  productId Int
+
+  user   Admin @relation(fields: [userId], references: [id])
+  userId Int
+
+  @@id([productId, userId])
+}
+
+model Waiter {
+  id        Int     @id @default(autoincrement())
+  firstname String
+  latname   String
+  orders    Order[]
+}
+
+model Table {
+  id       Int     @id @default(autoincrement())
+  number   Int
+  capacity Int
+  orders   Order[]
+}
+
+model Order {
+  id       Int       @id @default(autoincrement())
+  date     DateTime  @default(now())
+  products Product[]
+  waiter   Waiter    @relation(fields: [waiterId], references: [id])
+  waiterId Int
+  table    Table     @relation(fields: [tableId], references: [id])
+  tableId  Int
+}
