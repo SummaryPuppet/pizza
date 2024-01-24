@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import MenuSideBarItem from "./MenuSideBarItem";
 import DashboardIcon from "./icons/Dashboard";
 import IngredientIcon from "./icons/Ingredient";
 import TransferIcon from "./icons/Transfer";
@@ -19,68 +20,61 @@ function MenuSideBar() {
           </Link>
         </li>
 
-        <li>
-          <details>
-            <summary>
+        <MenuSideBarItem
+          title={
+            <>
               <IngredientIcon />
               Ingredients
-            </summary>
+            </>
+          }
+        >
+          <li>
+            <Link to={"/ingredients"}>All Ingredients</Link>
+          </li>
+          <li>
+            <Link to={"/ingredient/create"}>Create Ingredient</Link>
+          </li>
+        </MenuSideBarItem>
 
-            <ul>
-              <li>
-                <Link to={"/ingredients"}>All Ingredients</Link>
-              </li>
-              <li>
-                <Link to={"/ingredient/create"}>Create Ingredient</Link>
-              </li>
-            </ul>
-          </details>
-        </li>
+        <MenuSideBarItem title={"Products"}>
+          <li>
+            <Link to={"/products"}>All Products</Link>
+          </li>
+          <li>
+            <Link to={"/product/create"}>Create Product</Link>
+          </li>
+        </MenuSideBarItem>
 
-        <li>
-          <details>
-            <summary>Products</summary>
-
-            <ul>
-              <li>
-                <Link to={"/products"}>All Products</Link>
-              </li>
-              <li>
-                <Link to={"/product/create"}>Create Product</Link>
-              </li>
-            </ul>
-          </details>
-        </li>
-
-        <li>
-          <details>
-            <summary>
+        <MenuSideBarItem
+          title={
+            <>
               <TransferIcon />
               Transactions
-            </summary>
+            </>
+          }
+        >
+          <li>
+            <Link to={"/transactions"}>All Transactions</Link>
+          </li>
+        </MenuSideBarItem>
 
-            <ul>
-              <li>
-                <Link to={"/transactions"}>All Transactions</Link>
-              </li>
-            </ul>
-          </details>
-        </li>
+        <MenuSideBarItem title={"Waiters"}>
+          <li>
+            <Link to={"/waiters"}>All Waiters</Link>
+          </li>
+          <li>
+            <Link to={"/waiter/add"}>Add Waiter</Link>
+          </li>
+        </MenuSideBarItem>
 
-        <li>
-          <details>
-            <summary>Waiters</summary>
-
-            <ul>
-              <li>
-                <Link to={"/waiters"}>All Waiters</Link>
-              </li>
-              <li>
-                <Link to={"/waiter/add"}>Add Waiter</Link>
-              </li>
-            </ul>
-          </details>
-        </li>
+        <MenuSideBarItem title={"Tables"}>
+          <li>
+            <Link to={""}>All Tables</Link>
+          </li>
+          <li>
+            <Link to={""}>Add Table</Link>
+          </li>
+        </MenuSideBarItem>
       </ul>
     </aside>
   );

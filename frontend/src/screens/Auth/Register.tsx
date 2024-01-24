@@ -22,19 +22,6 @@ function Register() {
     const { username, email, password } = data;
     try {
       await signup({ username, email, password });
-      // const response = await fetch("http://localhost:3000/register/", {
-      //   method: "POST",
-      //   body: JSON.stringify({
-      //     username,
-      //     email,
-      //     password,
-      //   }),
-      // });
-      // console.log(response);
-
-      // if (!response.ok) return new Error("Error from server");
-
-      // const data = await response.json();
 
       reset();
     } catch (error: any) {
