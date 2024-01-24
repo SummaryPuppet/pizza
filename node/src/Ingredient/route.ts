@@ -1,4 +1,5 @@
 import { Router } from "express";
+import upload from "../storage";
 import {
   createIngredient,
   deleteIngredient,
@@ -7,7 +8,6 @@ import {
   updateIngredient,
   updateIngredientQuantity,
 } from "./controller";
-import upload from "../storage";
 
 const router = Router();
 

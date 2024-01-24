@@ -114,8 +114,9 @@ model UserOnProducts {
 
 model Waiter {
   id        Int     @id @default(autoincrement())
+  code      String
   firstname String
-  latname   String
+  lastname  String
   orders    Order[]
 }
 
