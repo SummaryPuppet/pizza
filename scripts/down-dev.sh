@@ -5,7 +5,7 @@ if [ ! -f "docker-compose-dev.yml" ]; then
     exit 1
 fi
 
-docker compose -f ./docker-compose.yml down
+docker compose -f ./docker-compose-dev.yml down
 
 echo ""
 echo "Program says goodbye"

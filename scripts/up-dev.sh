@@ -6,7 +6,7 @@ if [ ! -f "docker-compose-dev.yml" ]; then
 fi
 
 # Run docker compose
-docker compose -f ./docker-compose.yml up -d
+docker compose -f ./docker-compose-dev.yml up -d
 
 # Colors
 GREEN="\e[32m"
