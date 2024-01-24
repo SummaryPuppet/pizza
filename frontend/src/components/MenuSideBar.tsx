@@ -76,7 +76,7 @@ function MenuSideBar() {
                 <Link to={"/waiters"}>All Waiters</Link>
               </li>
               <li>
-                <Link to={"/"}>Add Waiter</Link>
+                <Link to={"/waiter/add"}>Add Waiter</Link>
               </li>
             </ul>
           </details>

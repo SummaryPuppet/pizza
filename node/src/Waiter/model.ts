@@ -13,14 +13,14 @@ export const findOneCode = async (code: string) => {
 };
 
 export const create = async (
-  firstName: string,
-  lastName: string,
+  firstname: string,
+  lastname: string,
   code: string
 ) => {
   return await prisma.waiter.create({
     data: {
-      firstname: firstName,
-      lastname: lastName,
+      firstname,
+      lastname,
       code,
     },
   });

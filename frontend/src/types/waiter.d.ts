@@ -4,3 +4,9 @@ export interface IWaiter {
   firstname: string;
   lastname: string;
 }
+
+export interface ICreateWaiter {
+  code: string;
+  firstname: string;
+  lastname: string;
+}

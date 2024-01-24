@@ -1,7 +1,7 @@
 import { IInputProps } from "@/types/inputprops";
 import { forwardRef } from "react";
-import InputError from "./InputError";
 import { UseFormRegister } from "react-hook-form";
+import InputError from "./InputError";
 
 type FormValues = {};
 
@@ -10,7 +10,7 @@ const Input = forwardRef<
   { label: string } & ReturnType<UseFormRegister<FormValues>>
 >(({ label, error, register, ...restInputProps }, ref) => {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col xl:gap-4">
       <label className="form-control flex flex-col">
         <div className="label">
           <span className="label-text">

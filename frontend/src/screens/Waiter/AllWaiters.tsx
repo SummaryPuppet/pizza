@@ -33,7 +33,7 @@ function AllWaitersScreen() {
                 <h2 className="card-title">
                   {waiter.firstname} {waiter.lastname}
                 </h2>
-                <p>{waiter.code}</p>
+                <p>code: {waiter.code}</p>
               </div>
             </li>
           ))}

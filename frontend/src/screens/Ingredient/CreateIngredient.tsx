@@ -3,6 +3,7 @@ import FileInput from "@/components/ui/FileInput";
 import Input from "@/components/ui/Input";
 import SubmitButton from "@/components/ui/SubmitButton";
 import TextArea from "@/components/ui/TextArea";
+import Toast from "@/components/ui/Toast";
 import { useAuth } from "@/contexts/Auth";
 import FormLayout from "@/layouts/FormLayout";
 import { ICreateIngredient } from "@/types/ingredient";
@@ -101,12 +102,10 @@ function CreateIngredient() {
 
       <SubmitButton>Create Ingredient</SubmitButton>
 
-      {createIngredient.isSuccess ? (
-        <div className="toast">
-          <div className="alert alert-success">
-            <span>Created</span>
-          </div>
-        </div>
+      {createIngredient.isError ? (
+        <Toast text="Error" variant="error" />
+      ) : createIngredient.isSuccess ? (
+        <Toast text="Created" variant="success" />
       ) : (
         <></>
       )}

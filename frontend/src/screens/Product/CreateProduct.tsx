@@ -6,6 +6,7 @@ import Modal from "@/components/ui/Modal";
 import Select from "@/components/ui/Select";
 import SubmitButton from "@/components/ui/SubmitButton";
 import TextArea from "@/components/ui/TextArea";
+import Toast from "@/components/ui/Toast";
 import { useAuth } from "@/contexts/Auth";
 import FormLayout from "@/layouts/FormLayout";
 import { IIngredient } from "@/types/ingredient";
@@ -152,17 +153,9 @@ function CreateProduct() {
 
       <SubmitButton>Create Product</SubmitButton>
       {createProduct.isError ? (
-        <div className="toast">
-          <div className="alert alert-error">
-            <span>Error</span>
-          </div>
-        </div>
+        <Toast text="Error" variant="error" />
       ) : createProduct.isSuccess ? (
-        <div className="toast">
-          <div className="alert alert-success">
-            <span>Created</span>
-          </div>
-        </div>
+        <Toast text="Created" variant="success" />
       ) : (
         <></>
       )}
