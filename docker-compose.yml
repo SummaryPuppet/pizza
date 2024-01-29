@@ -1,32 +1,33 @@
 version: '3.8'
 
 services:
-  mysql:
-    image: mysql:8.2
+  postgres:
+    image: postgres:12.17-alpine3.19
     restart: unless-stopped
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=pizza
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=pizza
     ports:
-      - "3307:3306"
+      - '5432:5432'
     networks:
-      - backend
+    - backend
     healthcheck:
-      test: ["CMD", "mysqladmin", 'ping', '-h127.0.0.1', '-P3306']
+      test: ["CMD-SHELL", "pg_isready -U root -d pizza"]
       interval: 5s
-      timeout: 2s
+      timeout: 10s
       retries: 20
     volumes:
-      - mysql_data:/var/lib/mysql
+      - db_data:/var/lib/postgresql/data
 
   node: 
     build: ./node
     ports:
       - "3000:3000"
     depends_on:
-      - mysql
+      - postgres
     links:
-      - mysql
+      - postgres
     networks:
       - backend
       - frontend
@@ -43,7 +44,7 @@ services:
       - frontend
 
 volumes:
-  mysql_data:
+  db_data:
 
 networks:
   backend:

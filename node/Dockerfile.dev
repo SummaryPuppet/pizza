@@ -16,4 +16,4 @@ RUN apt-get update && apt-get install -y wait-for-it
 
 EXPOSE 3000
 
-CMD ["wait-for-it", "mysql:3306", "--", "npm", "run", "dev"]
+CMD ["wait-for-it", "postgres:5432", "--", "npm", "run", "dev"]
